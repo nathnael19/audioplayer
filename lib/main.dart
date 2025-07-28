@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:just_audio_background/just_audio_background.dart';
 import 'package:two/cubit/audio_cubit.dart';
 import 'package:two/home_page.dart';
 
-void main() {
+void main() async {
+  await JustAudioBackground.init(
+    androidNotificationChannelId: 'com.ryanheise.bg_demo.channel.audio',
+    androidNotificationChannelName: 'Android playback',
+    androidNotificationOngoing: true,
+  );
   runApp(BlocProvider(create: (context) => AudioCubit(), child: const MyApp()));
 }
 
