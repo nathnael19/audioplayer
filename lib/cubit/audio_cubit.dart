@@ -26,6 +26,7 @@ class AudioCubit extends Cubit<AudioState> {
   Future<void> load(String url) async {
     try {
       await _audioPlayer.setUrl(url);
+      _audioPlayer.play();
     } catch (e) {
       emit(state.copyWith(errorMessage: e.toString()));
     }
@@ -33,6 +34,7 @@ class AudioCubit extends Cubit<AudioState> {
 
   void play() => _audioPlayer.play();
   void pause() => _audioPlayer.pause();
+  void stop() => _audioPlayer.stop();
   void seek(Duration pos) => _audioPlayer.seek(pos);
 
   @override
