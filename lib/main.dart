@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:two/cubit/audio_cubit.dart';
 import 'package:two/home_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(BlocProvider(create: (context) => AudioCubit(), child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {

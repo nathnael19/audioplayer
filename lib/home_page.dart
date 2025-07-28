@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:two/audio_player.dart';
+import 'package:two/cubit/audio_cubit.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -19,6 +21,7 @@ class _HomePageState extends State<HomePage> {
   ];
   @override
   Widget build(BuildContext context) {
+    final audioCubit = BlocProvider.of<AudioCubit>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xffAA2424),
