@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:two/audio_player.dart';
+import 'package:two/home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,8 +13,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(brightness: Brightness.dark),
-      home: const MyAudioPlayer(),
+      theme: ThemeData(brightness: Brightness.light),
+      home: const HomePage(),
     );
   }
 }

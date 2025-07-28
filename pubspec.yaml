@@ -37,6 +37,7 @@ dependencies:
   just_audio:
   just_audio_media_kit:
   just_audio_windows:
+  audio_video_progress_bar: ^2.0.3
 
 dev_dependencies:
   flutter_test:
