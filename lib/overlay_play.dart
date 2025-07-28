@@ -11,8 +11,7 @@ class OverlayPlay extends StatelessWidget {
 
     return BlocBuilder<AudioCubit, AudioState>(
       builder: (context, state) {
-        // If no audio is loaded or nothing is playing, don't show the overlay
-        if (!state.isPlaying && state.position == Duration.zero) {
+        if (state.isStopped == true) {
           return const SizedBox.shrink();
         }
 

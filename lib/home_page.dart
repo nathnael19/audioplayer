@@ -12,13 +12,22 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<String> tracks = [
-    "Track 1",
-    "Track 2",
-    "Track 3",
-    "Track 4",
-    "Track 5",
-    "Track 6",
+  List tracks = [
+    [
+      "Track 1",
+      "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+      "https://i.pinimg.com/originals/62/e2/0a/62e20a91444dfb123bdd9a9acd1e6842.png",
+    ],
+    [
+      "Track 2",
+      "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+      "https://cdn.pixabay.com/photo/2023/03/25/20/30/podcast-7876792_1280.jpg",
+    ],
+    [
+      "Track 3",
+      "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
+      "https://st.depositphotos.com/1008768/4671/i/450/depositphotos_46718315-stock-illustration-podcast.jpg",
+    ],
   ];
   @override
   Widget build(BuildContext context) {
@@ -60,8 +69,9 @@ class _HomePageState extends State<HomePage> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) => MyAudioPlayer(
-                                  path:
-                                      "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+                                  path: tracks[index][1],
+                                  imageUrl: tracks[index][2],
+                                  title: tracks[index][0],
                                 ),
                               ),
                             );
@@ -72,13 +82,11 @@ class _HomePageState extends State<HomePage> {
                               borderRadius: BorderRadius.circular(10),
                               image: DecorationImage(
                                 fit: BoxFit.cover,
-                                image: NetworkImage(
-                                  "https://i.pinimg.com/originals/62/e2/0a/62e20a91444dfb123bdd9a9acd1e6842.png",
-                                ),
+                                image: NetworkImage(tracks[index][2]),
                               ),
                             ),
                             child: Text(
-                              tracks[index],
+                              tracks[index][0],
                               style: TextStyle(color: Colors.blue),
                             ),
                           ),

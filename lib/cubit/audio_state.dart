@@ -5,6 +5,7 @@ class AudioState {
   final Duration buffered;
   final Duration duration;
   final bool isPlaying;
+  final bool isStopped;
   final String? errorMessage;
 
   const AudioState({
@@ -12,6 +13,7 @@ class AudioState {
     required this.buffered,
     required this.duration,
     required this.isPlaying,
+    required this.isStopped,
     this.errorMessage,
   });
 
@@ -21,6 +23,7 @@ class AudioState {
       buffered: Duration.zero,
       duration: Duration.zero,
       isPlaying: false,
+      isStopped: true,
       errorMessage: null,
     );
   }
@@ -30,6 +33,7 @@ class AudioState {
     Duration? buffered,
     Duration? duration,
     bool? isPlaying,
+    bool? isStopped,
     String? errorMessage,
   }) {
     return AudioState(
@@ -37,6 +41,7 @@ class AudioState {
       buffered: buffered ?? this.buffered,
       duration: duration ?? this.duration,
       isPlaying: isPlaying ?? this.isPlaying,
+      isStopped: isStopped ?? this.isStopped,
       errorMessage: errorMessage ?? this.errorMessage,
     );
   }
@@ -47,6 +52,7 @@ class AudioState {
     buffered,
     duration,
     isPlaying,
+    isStopped,
     errorMessage,
   ];
 }

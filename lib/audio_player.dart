@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:two/cubit/audio_cubit.dart';
 
 class MyAudioPlayer extends StatefulWidget {
   final String path;
-  const MyAudioPlayer({super.key, required this.path});
+  final String title;
+  final String imageUrl;
+  const MyAudioPlayer({
+    super.key,
+    required this.path,
+    required this.title,
+    required this.imageUrl,
+  });
 
   @override
   State<MyAudioPlayer> createState() => _MyAudioPlayerState();
@@ -23,7 +29,7 @@ class _MyAudioPlayerState extends State<MyAudioPlayer> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Audio Player'),
+        title: Text(widget.title),
         backgroundColor: const Color(0xffAA2424),
         foregroundColor: Colors.white,
       ),
@@ -53,12 +59,9 @@ class _MyAudioPlayerState extends State<MyAudioPlayer> {
                           SizedBox(
                             width: 236,
                             height: 313,
-                            child: const Center(
-                              child: Icon(
-                                Icons.music_note,
-                                size: 100,
-                                color: Colors.white,
-                              ),
+                            child: Image.network(
+                              widget.imageUrl,
+                              fit: BoxFit.cover,
                             ),
                           ),
                           const SizedBox(height: 20),
@@ -95,7 +98,7 @@ class _MyAudioPlayerState extends State<MyAudioPlayer> {
                                 },
                                 icon: const Icon(
                                   Icons.skip_previous_rounded,
-                                  size: 40,
+                                  size: 30,
                                   color: Colors.white,
                                 ),
                               ),
@@ -112,7 +115,7 @@ class _MyAudioPlayerState extends State<MyAudioPlayer> {
                                 },
                                 icon: const Icon(
                                   Icons.replay_10,
-                                  size: 40,
+                                  size: 30,
                                   color: Colors.white,
                                 ),
                               ),
@@ -122,12 +125,18 @@ class _MyAudioPlayerState extends State<MyAudioPlayer> {
                                       ? audioCubit.pause()
                                       : audioCubit.play();
                                 },
-                                icon: Icon(
-                                  state.isPlaying
-                                      ? Icons.pause
-                                      : Icons.play_arrow,
-                                  size: 80,
-                                  color: Colors.white,
+                                icon: CircleAvatar(
+                                  backgroundColor: Colors.white,
+                                  foregroundColor: Color(0xff80011F),
+                                  radius: 35,
+                                  child: Center(
+                                    child: Icon(
+                                      state.isPlaying
+                                          ? Icons.pause
+                                          : Icons.play_arrow,
+                                      size: 40,
+                                    ),
+                                  ),
                                 ),
                               ),
                               IconButton(
@@ -142,7 +151,7 @@ class _MyAudioPlayerState extends State<MyAudioPlayer> {
                                 },
                                 icon: const Icon(
                                   Icons.forward_10,
-                                  size: 40,
+                                  size: 30,
                                   color: Colors.white,
                                 ),
                               ),
@@ -152,13 +161,27 @@ class _MyAudioPlayerState extends State<MyAudioPlayer> {
                                 },
                                 icon: const Icon(
                                   Icons.skip_next_rounded,
-                                  size: 40,
+                                  size: 30,
                                   color: Colors.white,
                                 ),
                               ),
                             ],
                           ),
+                          SizedBox(height: 10),
+                          _buildInteractionRow(),
                           const SizedBox(height: 24),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                "ክፍሎች",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 17,
+                                ),
+                              ),
+                            ],
+                          ),
                           ListView.builder(
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
@@ -194,6 +217,53 @@ class _MyAudioPlayerState extends State<MyAudioPlayer> {
             );
           },
         ),
+      ),
+    );
+  }
+
+  Widget _buildInteractionRow() {
+    return SizedBox(
+      // width: 360,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: const [
+              Text("400", style: TextStyle(color: Colors.white)),
+              SizedBox(width: 10),
+              Icon(Icons.thumb_up, color: Colors.white, size: 30),
+            ],
+          ),
+          Row(
+            children: const [
+              Text("20", style: TextStyle(color: Colors.white)),
+              SizedBox(width: 10),
+              Icon(Icons.message, color: Colors.white, size: 30),
+            ],
+          ),
+          Row(
+            children: const [
+              Text("4", style: TextStyle(color: Colors.white)),
+              SizedBox(width: 10),
+              Icon(Icons.share, color: Colors.white, size: 30),
+            ],
+          ),
+          const Icon(Icons.bookmark, color: Colors.white, size: 30),
+          Container(
+            decoration: BoxDecoration(
+              color: const Color(0xffEDE4E6),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Padding(
+              padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+              child: Text(
+                "Tip Creator",
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

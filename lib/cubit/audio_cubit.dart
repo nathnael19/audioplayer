@@ -26,15 +26,24 @@ class AudioCubit extends Cubit<AudioState> {
   Future<void> load(String url) async {
     try {
       await _audioPlayer.setUrl(url);
+      emit(state.copyWith(isStopped: false)); // ⬅ Reset stopped state
       _audioPlayer.play();
     } catch (e) {
-      emit(state.copyWith(errorMessage: e.toString()));
+      emit(state.copyWith(errorMessage: e.toString(), isStopped: false));
     }
   }
 
-  void play() => _audioPlayer.play();
+  void play() {
+    emit(state.copyWith(isStopped: false));
+    _audioPlayer.play();
+  }
+
   void pause() => _audioPlayer.pause();
-  void stop() => _audioPlayer.stop();
+  void stop() {
+    emit(state.copyWith(isStopped: true));
+    _audioPlayer.stop();
+  }
+
   void seek(Duration pos) => _audioPlayer.seek(pos);
 
   @override
