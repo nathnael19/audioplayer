@@ -37,7 +37,7 @@ A modern and customizable audio player app built with **Flutter**, supporting pl
 ### Installation
 
 ```bash
-git clone https://github.com/nathnael19/flutter-audio-player.git
+git clone https://github.com/nathnael19/audioplayer.git
 cd flutter-audio-player
 flutter pub get
 flutter run
