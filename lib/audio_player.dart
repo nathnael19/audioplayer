@@ -223,7 +223,6 @@ class _MyAudioPlayerState extends State<MyAudioPlayer> {
 
   Widget _buildInteractionRow() {
     return SizedBox(
-      // width: 360,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
