@@ -5,11 +5,12 @@
 
     <application
         android:label="Audio Player"
+        android:label="Audio Player"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
 
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.audioservice.AudioServiceActivity"
             android:exported="true"
             android:launchMode="singleTop"
             android:theme="@style/LaunchTheme"
